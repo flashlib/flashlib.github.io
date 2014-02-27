@@ -1,0 +1,21 @@
+/* TEAM */
+                            
+Your title: Jacky Huang.                      
+Site: pathof.me.
+Twitter: @MrBearPan 
+Location: ShenZhen, China.
+
+
+/* THANKS */
+
+HTML5 Muffin
+This is a Frappuccino Blog
+Name: http://richbray.me/frap/
+
+                            
+/* SITE */
+                          
+Last update: 2014/02/27                    
+Standards: HTML5, CSS3,..                   
+Components: Modernizr, jQuery, etc.                            
+Software: jekyll, markdown, github pages
