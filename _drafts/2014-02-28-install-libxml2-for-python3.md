@@ -1,15 +1,38 @@
 ---
 ---
-Mac-JK:examples it$ hovercraft codingDojo.rst codingDojo                        Traceback (most recent call last):
-  File "/Library/Frameworks/Python.framework/Versions/3.3/bin/hovercraft", line 9, in <module>
-    load_entry_point('hovercraft==1.2.dev0', 'console_scripts', 'hovercraft')()
-  File "/Library/Frameworks/Python.framework/Versions/3.3/lib/python3.3/site-packages/hovercraft-1.2.dev0-py3.3.egg/hovercraft/__init__.py", line 16, in main
-    from lxml import html
-  File "/Library/Frameworks/Python.framework/Versions/3.3/lib/python3.3/site-packages/lxml-3.3.1-py3.3-macosx-10.6-intel.egg/lxml/html/__init__.py", line 42, in <module>
-    from lxml import etree
-ImportError: dlopen(/Library/Frameworks/Python.framework/Versions/3.3/lib/python3.3/site-packages/lxml-3.3.1-py3.3-macosx-10.6-intel.egg/lxml/etree.so, 2): Library not loaded: /opt/local/lib/libxml2.2.dylib
-  Referenced from: /Library/Frameworks/Python.framework/Versions/3.3/lib/python3.3/site-packages/lxml-3.3.1-py3.3-macosx-10.6-intel.egg/lxml/etree.so
-  Reason: Incompatible library version: etree.so requires version 12.0.0 or later, but libxml2.2.dylib provides version 10.0.0
+
+###删除MacPorts后libxml2版本错误问题的解决
+
+由于在安装jekyll的时候，我把MacPorts删掉了，导致我运行[HoverCraft]时（一个利用[impress.js]将ReST文本转换为展示网页的工具，这个可以专门写一篇博客来介绍了，这里就不扩展了），找不到其依赖的libxml2版本。错误信息如下：
+
+	hovercraft codingDojo.rst codingDojo                        Traceback (most recent call last):
+	  File "/Library/Frameworks/Python.framework/Versions/3.3/bin/hovercraft", line 9, in <module>
+	    load_entry_point('hovercraft==1.2.dev0', 'console_scripts', 'hovercraft')()
+	  File "/Library/Frameworks/Python.framework/Versions/3.3/lib/python3.3/site-packages/hovercraft-1.2.dev0-py3.3.egg/hovercraft/__init__.py", line 16, in main
+	    from lxml import html
+	  File "/Library/Frameworks/Python.framework/Versions/3.3/lib/python3.3/site-packages/lxml-3.3.1-py3.3-macosx-10.6-intel.egg/lxml/html/__init__.py", line 42, in <module>
+	    from lxml import etree
+	ImportError: dlopen(/Library/Frameworks/Python.framework/Versions/3.3/lib/python3.3/site-packages/lxml-3.3.1-py3.3-macosx-10.6-intel.egg/lxml/etree.so, 2): Library not loaded: /opt/local/lib/libxml2.2.dylib
+	  Referenced from: /Library/Frameworks/Python.framework/Versions/3.3/lib/python3.3/site-packages/lxml-3.3.1-py3.3-macosx-10.6-intel.egg/lxml/etree.so
+	  Reason: Incompatible library version: etree.so requires version 12.0.0 or later, but libxml2.2.dylib provides version 10.0.0
+ 
+使用otool可以看到，其依赖于已经删除的
+需要重新安装lxml（python需要安装lxml来获得此库），但是需要注意，由于HoverCraft需要python3.3以上，如果你电脑上的默认python版本不是3.3，则安装的时候需要注意，如使用easy_install安装，需要使用python3.3版本的easy_install:
+
+	> wget https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py -O - | python
+或
+
+	> wget https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py -O - | python3
+
+具体可以参考[easy_install官方主页][easy_install]。
+
+然后使用easy_install3安装lxml:
+
+	easy_install-3.3 lxml
+ 
+
+
+
 Mac-JK:examples it$ easy_install lxml
 Searching for lxml
 Reading http://pypi.python.org/simple/lxml/
@@ -113,3 +136,5 @@ Mac-JK:examples it$ otool -L /Library/Frameworks/Python.framework/Versions/3.3/l
 Mac-JK:examples it$ hovercraft codingDojo.rst codingDojo
 <string>:109: (ERROR/3) Document may not end with a transition.
 Mac-JK:examples it$
+
+[easy_install]: https://pypi.python.org/pypi/setuptools#id137
