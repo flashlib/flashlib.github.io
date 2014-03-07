@@ -83,10 +83,10 @@ google后看到有人说安装0.5.0可以：
 有人说重新安装python2.7.x可以解决，于是重新安装。。。。
 
 	jekyll server
-*居然真的解决了！*[ksaper]运行起来了！仔细想想，应该是后装python3.3时，改变了某些环境变量。
+*居然真的解决了！*[kasper]运行起来了！仔细想想，应该是后装python3.3时，改变了某些环境变量。
 
 ###安装nokogiri插件
-由于[kasper][kasper]稍显复杂，我在[Jekyll Themes]挑了一个我比较喜欢的简洁主题([Vanilla Bean Creme])，下载到本地看看：
+由于[kasper]稍显复杂，我在[Jekyll Themes]挑了一个我比较喜欢的简洁主题([Vanilla Bean Creme])，下载到本地看看：
 
 	cd ~/vbc
 	jekyll server
