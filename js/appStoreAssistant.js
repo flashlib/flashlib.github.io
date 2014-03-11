@@ -2,38 +2,37 @@ function appStoreAssistant(appId){
   console.log('document ready');
   //select key DOM nodes only once
   //var $results = $('#appInfo');
-  var $results = document.getElementById('appInfo'); 
-  
+  var $results = $('#appInfo'); 
   //keep track of result metadata
   var dataArray = [];
-  var resultList = [];
   var resultHtml = null;
   
   //send request whenever user types key
   if(appId){
     $.ajax({
-      url: "http://itunes.apple.com/lookup?id="+appId,
+      url: "http://itunes.apple.com/lookup?id=" + appId + '&country=cn',
       dataType: 'JSONP'
     }).done(function(data){
       finished = true;
-      if(!data){
+      if(null === data){
 	$results.text('no data');
         return;
       }
 
-      $resultHtml = null;
+      $resultHtml = "";
       $results.empty();
       dataArray = [];
       
       //for each results, add element to result list
       for(var i = 0, len = data.results.length; i < len; i++){
         var res = new result(data.results[i]);
-        resultHtml += res.html;
-        resultList.push(res);
-        $results.append(res.html);
+	console.log("res: " + res.html);
+        $resultHtml += res.html;
       }
+      $results.html($resultHtml);
     })
     .fail(function(data){
+        console.log('fail');
 	$results.text('data error');
     });
   }
@@ -43,18 +42,18 @@ function appStoreAssistant(appId){
 function result(data){
   this.data = data;
   this.image = data.artworkUrl100;
-  this.url = data.artistViewUrl;
+  this.url = data.trackViewUrl;
   this.description = data.description;
   this.name = data.trackName;
+  this.genres = data.genres;
+  this.version = data.version;
 
-  //this.html = '<li class="list-template" title="'+data.artistName+'"><a href="'+data.artistViewUrl + '"><img src="'+this.image+'" /></a></li>';
-  
   this.html = '<div class="entry-wrap">'
     + '<div class="entry">'
     + '<h2 class="title"><a href="' + this.url + '" title="' + this.name + '">' + this.name + '</a></h2>'
     + '<p class="date">'
-    + '<span class="month">Mar</span>'
-    + '<span class="day">02</span>'
+    + '<span class="versionTitle">Ver</span>'
+    + '<span class="version">' + this.version + '</span>'
     + '</p>'
     + '<div class="entry-content clearfix">'
     + '<div class="thumb">'
@@ -67,8 +66,7 @@ function result(data){
     + '<div class="post-meta-top"></div>'
     + '<div class="post-meta clearfix">'
     + '<span class="meta-info categories">'
-    + '<span class="right-sep">'
-    + '<a href="' + this.url + '" title="' + this.name + '" rel="category tag">Finance</a></span>'
+    + '<span class="right-sep">' + this.genres + '</span>'
     + '</span>'
     + '</div> <!-- end .post-meta -->'
     + '</div> <!-- end .entry -->'

@@ -23,11 +23,12 @@ a.appTitle:hover { text-decoration: underline; }
 .entry h1.title { background: none; }
 .entry h1.page { background: url(/img/title-separator.png) no-repeat bottom left !important; }
 
+.entry h2.title a {color:#403f3a}
 .entry h2.title	a:hover { color: #2a2926; text-decoration: none; }
 .entry p.date { background:url("/img/date-bg.png") no-repeat; height:57px; left:-8px; padding-bottom:0; position:absolute; top:55px; width:53px; }
 .entry p.date span { display:block; text-align:center; width:47px; text-transform: uppercase; font-weight: bold; color: #ffffff; text-shadow: -1px -1px 1px #763224; }
-.entry p.date span.month { font-size: 13px; margin-top:2px; }
-.entry p.date span.day { font-size: 24px; margin-top:-1px; }
+.entry p.date span.version{ font-size: 13px; margin-top:2px; }
+.entry p.date span.versiontTitle{ font-size: 18px; margin-top:-1px; }
 .entry-content { padding: 18px 45px 10px 44px; }
 a.readmore { background:url("/img/readmore.png") no-repeat scroll right top transparent; display:block; float:right; height:34px; padding-right:18px; color: #ffffff !important; text-shadow: -1px -1px 1px #420f05; line-height:30px; }
 a.readmore span { background: url(/img/readmore.png) no-repeat; display: block; height:34px; padding:0 0 0 14px; }
