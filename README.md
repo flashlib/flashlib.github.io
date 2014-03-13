@@ -1,10 +1,6 @@
-HTML5 Muffin chocchip steps
-============================
+Pathof.me
+=========
+This is the source code for my blog [Path of me](http://pathof.me). 
 
-Run bundle install
+It is base on the [jekyll](http://jekyllrb.com/) theme [Vanilla Bean Creme](http://jekyllthemes.org/themes/vanilla-bean-creme/).
 
-	bundle install
-
-Run jekyll
-
-	jekyll
