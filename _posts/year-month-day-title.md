@@ -1,4 +1,7 @@
 ---
-jekyll code goes here
+layout: post_page
+title: 标题
 ---
-Custom code goes here
+正文
+
+###正文章节
